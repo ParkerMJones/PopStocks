@@ -1,4 +1,4 @@
-app = "popStocks-84a5"
+app = "popstocks-84a5"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
