@@ -57,7 +57,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
   const user = useOptionalUser();
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
 
   let sum = 0;
   data.stockListItems.map(

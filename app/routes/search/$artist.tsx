@@ -31,7 +31,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 function SearchResults() {
   const artists = useLoaderData();
   const user = useOptionalUser();
-  // console.log(artists)
+  console.log(artists);
 
   return (
     <div className="bg-primaryBlack">

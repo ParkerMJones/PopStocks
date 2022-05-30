@@ -11,7 +11,7 @@ function Search() {
       <div className="flex w-80 gap-2 rounded border border-white bg-transparent p-1 text-gray-100">
         <SearchIcon />
         <input
-          placeholder="Search"
+          placeholder="Search Artists"
           className="bg-transparent focus:outline-none"
           onChange={(e) => setArtist(e.target.value)}
         />
