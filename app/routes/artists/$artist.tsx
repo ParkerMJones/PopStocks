@@ -49,7 +49,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
       .then((response) => response.json())
       .then((data) =>
         fetch(
-          `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&search=${data.name}&language=en&country=us&page=1&limit=1`
+          `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&search=${data.name}&language=en&country=us&page=1&limit=3`
         )
       ),
     await getStockListItems({ userId }),
