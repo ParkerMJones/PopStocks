@@ -48,7 +48,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   });
   const news = await fetch(
-    `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&domains=rollingstone.com,complex.com,billboard.com,pitchfork.com,edm.com,mtv.com,hiphopdx.com,ra.co&sort=published_at&language=en&country=us&page=1&limit=5`
+    `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&domains=rollingstone.com,complex.com,billboard.com,pitchfork.com,edm.com,mtv.com,hiphopdx.com,ra.co&sort=published_at&language=en&country=us&page=1&limit=1`
   ).then((res) => res.json());
   return { stocksData, stockListItems, transactionHistory, news };
 };
@@ -78,14 +78,14 @@ export default function Index() {
         <>
           <Header user={user} />
           <div className="w-100% flex flex-col gap-y-12 py-8">
-            <div className="m-auto w-2/3">
+            <div className="m-auto w-full px-6 lg:w-2/3">
               <h3 className="text-gray-100">Overview:</h3>
               <Stats followers={sum.toLocaleString()} data={transactions} />
             </div>
-            <h1 className="m-auto w-2/3 text-2xl text-gray-100">
+            <h1 className="m-auto w-full px-6 text-2xl text-gray-100 lg:w-2/3">
               Top 50 Global
             </h1>
-            <div className="m-auto w-2/3">
+            <div className="m-auto w-full px-6 lg:w-2/3">
               <iframe
                 src="https://open.spotify.com/embed/playlist/37i9dQZEVXbMDoHDwVN2tF?utm_source=generator"
                 width="100%"
@@ -95,13 +95,15 @@ export default function Index() {
                 title="top50"
               ></iframe>
             </div>
-            <h1 className="m-auto w-2/3 text-2xl text-gray-100">News</h1>
+            <h1 className="m-auto w-full px-6 text-2xl text-gray-100 lg:w-2/3">
+              News
+            </h1>
             {data.news.data?.length > 0 ? (
-              <div className="m-auto w-2/3">
+              <div className="m-auto w-full px-6 lg:w-2/3">
                 {data.news.data.map((article: any) => (
                   <div
                     key={article.uuid}
-                    className="flex gap-x-4 border-t border-gray-600 p-4 text-gray-100"
+                    className="flex items-center gap-x-8 border-t border-gray-600 p-4 text-gray-100"
                   >
                     <a
                       className="flex w-4/5 flex-col gap-y-4"
@@ -117,11 +119,13 @@ export default function Index() {
                         {article.description}
                       </div>
                     </a>
-                    <img
-                      src={article.image_url}
-                      className="h-18 w-32"
-                      alt={article.title}
-                    />
+                    <div className="h-18 w-32">
+                      <img
+                        src={article.image_url}
+                        className="h-auto w-full"
+                        alt={article.title}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>

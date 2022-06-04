@@ -108,10 +108,10 @@ function ArtistPage() {
         </div>
       </article>
       <div className="mt-8 flex w-screen flex-col gap-y-4">
-        <div className="m-auto w-2/3">
+        <div className="m-auto w-full px-6 lg:w-2/3">
           <Stats artist={artist[0]} />
         </div>
-        <div className="m-auto flex w-2/3 items-center gap-8 py-3 text-gray-100">
+        <div className="m-auto flex w-full items-center gap-8 px-6 py-3 text-gray-100 lg:w-2/3">
           <p>
             Price: $
             {(artist[0].followers.total / 1000)
@@ -140,7 +140,7 @@ function ArtistPage() {
             Sell
           </button>
         </div>
-        <div className="m-auto w-2/3">
+        <div className="m-auto w-full px-6 lg:w-2/3">
           <h1 className="pb-4 text-gray-100">{artist[0].name}'s Top Tracks:</h1>
           {artist[1].tracks.map((track: any) => (
             <div
@@ -157,13 +157,15 @@ function ArtistPage() {
             </div>
           ))}
         </div>
-        <h2 className="m-auto w-2/3 text-2xl text-gray-100">News</h2>
+        <h2 className="m-auto w-full px-6 text-2xl text-gray-100 lg:w-2/3">
+          News
+        </h2>
         {artist[2].data?.length > 0 ? (
-          <div className="m-auto w-2/3">
+          <div className="m-auto w-full px-6 lg:w-2/3">
             {artist[2].data.map((article: any) => (
               <div
                 key={article.uuid}
-                className="flex gap-x-4 border-t border-gray-600 p-4 text-gray-100"
+                className="flex items-center gap-x-4 border-t border-gray-600 p-4 text-gray-100"
               >
                 <a
                   className="flex w-4/5 flex-col gap-y-4"
@@ -177,11 +179,13 @@ function ArtistPage() {
                     {article.description}
                   </div>
                 </a>
-                <img
-                  src={article.image_url}
-                  className="h-18 w-32"
-                  alt={article.title}
-                />
+                <div className="h-18 w-32">
+                  <img
+                    src={article.image_url}
+                    className="h-auto w-full"
+                    alt={article.title}
+                  />
+                </div>
               </div>
             ))}
           </div>
