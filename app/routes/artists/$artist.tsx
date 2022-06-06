@@ -200,27 +200,39 @@ function ArtistPage() {
           setTransactionCount(0);
         }}
       >
-        <div className="py-2 text-gray-100">{artist[0].name}</div>
-        <div className="py-2 text-gray-100">
-          $
-          {(artist[0].followers.total / 1000)
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-        </div>
-        {hasArtist && (
-          <div className="mb-2 py-2 text-gray-100">
-            {hasArtist.count} shares owned
+        <div className="flex flex-col items-center justify-center gap-y-3 pb-4 text-gray-100">
+          <div>{artist[0].name}</div>
+          <div>
+            $
+            {(artist[0].followers.total / 1000)
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
-        )}
-        {/* <div>{data.stockListItems[stockId].count}</div> */}
+          {hasArtist && (
+            <div className="mb-2">{hasArtist.count} shares owned</div>
+          )}
+        </div>
+        <label className="block pb-1 text-xs font-bold text-gray-700">
+          Number of Shares
+        </label>
         <input
           type="number"
           value={transactionCount}
-          className="mb-4 rounded pl-2 text-black"
+          className="rounded pl-2 text-black"
           onChange={handleChange}
           min="0"
         />
+        <div className="flex flex-col items-center justify-center gap-y-2 pt-2 pb-4 text-sm text-gray-700">
+          <div>Your Balance: ${user!.credits}</div>
+          <div>
+            Transaction Total: $
+            {((artist[0].followers.total / 1000) * transactionCount)
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+        </div>
         <Form
           method="post"
           onSubmit={() => {
@@ -305,6 +317,9 @@ function ArtistPage() {
                 (transactionCount * artist[0].followers.total) / 1000 >
                   user!.credits)
             }
+            onClick={() => {
+              window.location.href = "/portfolio";
+            }}
           >
             Confirm
           </button>

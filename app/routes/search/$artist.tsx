@@ -37,7 +37,7 @@ function SearchResults() {
     <div className="bg-primaryBlack">
       <Header user={user} />
       {artists.artists.items.length > 0 ? (
-        <div className="m-auto grid grid-cols-4 justify-items-center gap-8 p-12">
+        <div className="m-auto grid grid-cols-1 justify-items-center gap-8 p-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {artists.artists.items.map((artist: any) => (
             <Link to={`/artists/${artist.id}`} key={artist.id}>
               <div

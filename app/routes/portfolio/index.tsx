@@ -111,11 +111,11 @@ export default function PortfolioIndexPage() {
       <div className="m-auto w-2/3 bg-primaryBlack py-8 text-gray-100">
         <h3>Overview:</h3>
         <Stats followers={sum.toLocaleString()} data={transactions} />
-        <div className="grid grid-cols-5 py-6 px-2">
+        <div className="grid grid-cols-2 items-center gap-4 py-6 px-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           <div>Artist Name</div>
-          <div>Price</div>
-          <div>Owned</div>
-          <div>Your Followers</div>
+          <div className="hidden sm:inline">Price</div>
+          <div className="hidden md:inline">Owned</div>
+          <div className="hidden lg:inline">Your Followers</div>
           <div>Buy / Sell</div>
         </div>
         <ol className="mb-8">
@@ -124,21 +124,21 @@ export default function PortfolioIndexPage() {
               stock.count > 0 && (
                 <li
                   key={stock.artistId}
-                  className="mb-4 grid grid-cols-5 items-center rounded py-2 px-2 hover:bg-gray-700"
+                  className="mb-4 grid grid-cols-2 gap-4 rounded py-2 pl-2 pr-5 hover:bg-gray-700 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
                 >
                   <>
                     <Link to={`/artists/${stock.artistId}`}>
                       {stock.artistName}
                     </Link>
-                    <div>
+                    <div className="hidden sm:inline">
                       $
                       {(data.stocksData[i].followers.total / 1000)
                         .toFixed(2)
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </div>
-                    <div>{stock.count}</div>
-                    <span>
+                    <div className="hidden md:inline">{stock.count}</div>
+                    <span className="hidden lg:inline">
                       {(
                         data.stocksData[i].followers.total * stock.count
                       ).toLocaleString()}
@@ -189,19 +189,35 @@ export default function PortfolioIndexPage() {
               </div>
               <div>{data.stockListItems[stockId].count} shares owned</div>
             </div>
+            <label className="mb-2 block text-xs font-bold text-gray-700">
+              Number of Shares
+            </label>
             <input
               type="number"
               value={transactionCount}
               className="mb-4 rounded pl-2 text-black"
               onChange={handleChange}
             />
+            <div className="flex flex-col items-center justify-center gap-y-2 pb-4 text-sm text-gray-700">
+              <div>Your Balance: ${user!.credits}</div>
+              <div>
+                Transaction Total: $
+                {(
+                  (data.stocksData[stockId].followers.total / 1000) *
+                  transactionCount
+                )
+                  .toFixed(2)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </div>
+            </div>
             <Form
               method="post"
               onSubmit={() => {
                 setIsOpen(false);
                 setTransactionCount(0);
               }}
-              className="align-center flex flex-col justify-center gap-y-4"
+              className="flex flex-col items-center justify-center gap-y-4"
             >
               <div className="flex justify-center gap-x-4">
                 <input
@@ -281,7 +297,7 @@ export default function PortfolioIndexPage() {
                       user!.credits)
                     ? "bg-gray-500 text-gray-800 "
                     : "bg-transparent text-gray-100 hover:bg-gray-600"
-                } px-2 py-1  `}
+                } w-full px-2 py-1 `}
                 disabled={
                   transactionCount < 1 ||
                   (transactionType === "sell" &&

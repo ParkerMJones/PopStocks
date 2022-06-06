@@ -48,7 +48,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   });
   const news = await fetch(
-    `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&domains=rollingstone.com,complex.com,billboard.com,pitchfork.com,edm.com,mtv.com,hiphopdx.com,ra.co&sort=published_at&language=en&country=us&page=1&limit=1`
+    `https://api.thenewsapi.com/v1/news/all?api_token=Ua0sYWlifqJzXh2BjqoRFKTjfX1C24gVSftpuioO&domains=rollingstone.com,complex.com,billboard.com,pitchfork.com,edm.com,mtv.com,hiphopdx.com,ra.co&sort=published_at&language=en&country=us&page=1&limit=5`
   ).then((res) => res.json());
   return { stocksData, stockListItems, transactionHistory, news };
 };

@@ -3,7 +3,7 @@ import { Link, Form } from "@remix-run/react";
 const Menu = ({ open }: any) => {
   return (
     <nav
-      className={`absolute top-0 right-0 flex h-80 flex-col justify-center bg-secondaryGreen p-8 text-left ${
+      className={`absolute top-0 right-0 z-10 flex h-80 flex-col justify-center bg-secondaryGreen p-8 text-left ${
         open ? "visible" : "hidden"
       }`}
     >
